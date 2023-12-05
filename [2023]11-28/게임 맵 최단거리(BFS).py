@@ -1,19 +1,20 @@
+# 모듈 import
 from collections import deque
 
 # 문제풀이
 def solution(maps):
     n, m = len(maps), len(maps[0])
 
-    # 시작 지점과 방문 여부를 저장하는 2차원 배열
+    # 시작지점과 방문 여부를 저장
     visited = [[False] * m for _ in range(n)]
     visited[0][0] = True
 
-    # 시작 지점을 큐에 저장
-    queue = deque([(0, 0)])
+    # 시작지점을 큐에 저장
+    q = deque([(0, 0)])
 
     # 탐색
-    while queue:
-        x, y = queue.popleft()
+    while q:
+        x, y = q.popleft()
 
         # 도착한 경우
         if x == n - 1 and y == m - 1:
@@ -25,9 +26,9 @@ def solution(maps):
 
             if 0 <= nx < n and 0 <= ny < m and maps[nx][ny] == 1 and not visited[nx][ny]:
                 visited[nx][ny] = visited[x][y] + 1
-                queue.append((nx, ny))
+                q.append((nx, ny))
 
-    # 도착할 수 없는 경우
+    # 도착할수 없는 경우
     return -1
 
 
@@ -58,7 +59,7 @@ maps3 = [
         ]
 
 
-# 메인함수실행
+# 메인실행
 if __name__ == "__main__":
     res1 = solution(maps1)
     res2 = solution(maps2)
@@ -67,4 +68,3 @@ if __name__ == "__main__":
     print('res2:',res2)
     print('res3:',res3)
 
-    
